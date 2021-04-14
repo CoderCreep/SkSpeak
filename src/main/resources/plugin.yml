@@ -1,0 +1,7 @@
+name: SkSpeak
+main: de.codercreep.skspeak.SkSpeak
+version: 1.0
+author: CoderCreep
+
+depend:
+  - Skript
