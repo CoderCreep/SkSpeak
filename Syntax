@@ -1,1 +1,11 @@
-
+command /connect:
+    trigger:
+        skspeak connect to "127.0.0.1" with user "BotName" and name "serveradmin", "password" on query port 10011
+		
+command /disconnect:
+    trigger:
+        skspeak disconnect
+		
+command /broadcast:
+    trigger:
+        skspeak broadcastMessage "HALLO"
