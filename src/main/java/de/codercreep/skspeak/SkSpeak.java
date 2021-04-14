@@ -13,10 +13,10 @@ import java.io.IOException;
 public class SkSpeak extends JavaPlugin {
 
     public static final String PREFIX = "§7[§6SkSpeak§7] §r";
-    private SkriptAddon skriptAddon;
+    private static SkSpeak instance;
+    private SkriptAddon addon;
     private TS3Api ts3Api;
     private TS3Query ts3Query;
-    private static SkSpeak instance;
 
     @Override
     public void onEnable() {
@@ -31,23 +31,23 @@ public class SkSpeak extends JavaPlugin {
 
         instance = this;
 
-        this.skriptAddon = Skript.registerAddon(instance);
+        this.addon = Skript.registerAddon(this);
 
         try {
-            this.skriptAddon.loadClasses("de.codercreep.skspeak", "elements");
+            addon.loadClasses("de.codercreep.skspeak", "elements");
         } catch (IOException exception) {
             exception.printStackTrace();
         }
 
-        Skript.registerEffect(EffConnect.class, "[skspeak] connect (to|with) %text% with user %text% and password %text% with name %text% at port %integer%");
+        Skript.registerEffect(EffConnect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on port %integer%");
     }
 
     public static SkSpeak getInstance() {
         return instance;
     }
 
-    public SkriptAddon getSkriptAddon() {
-        return skriptAddon;
+    public SkriptAddon getAddon() {
+        return addon;
     }
 
     public TS3Api getTs3Api() {

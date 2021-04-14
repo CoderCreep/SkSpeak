@@ -1,6 +1,7 @@
 name: SkSpeak
 main: de.codercreep.skspeak.SkSpeak
 version: 1.0
+description: A Skript Addon to connect to your TeamSpeak Server
 author: CoderCreep
 
 depend:

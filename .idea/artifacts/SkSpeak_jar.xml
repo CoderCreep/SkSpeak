@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="SkSpeak-1.0:jar">
+  <artifact type="jar" name="SkSpeak:jar">
     <output-path>$PROJECT_DIR$/../SpigotHost/plugins</output-path>
     <root id="archive" name="SkSpeak.jar">
       <element id="module-output" name="SkSpeak" />
