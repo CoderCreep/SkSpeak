@@ -1,3 +1,0 @@
-on join:
-    # Connects to the TeamSpeak Server
-    skspeak connect to "127.0.0.1" with user "BotName" and name "serveradmin", "9sxR7Yjf" on port 10011

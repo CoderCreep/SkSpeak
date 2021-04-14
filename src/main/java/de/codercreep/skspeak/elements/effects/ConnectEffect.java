@@ -1,4 +1,4 @@
-package de.codercreep.skspeak.elements;
+package de.codercreep.skspeak.elements.effects;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -26,7 +26,7 @@ import de.codercreep.skspeak.SkSpeak;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
-public class EffConnect extends Effect {
+public class ConnectEffect extends Effect {
 
     private Expression<String> host;
     private Expression<String> user;
@@ -52,6 +52,11 @@ public class EffConnect extends Effect {
 
     @Override
     protected void execute(Event event) {
+        if(SkSpeak.getInstance().isConnected()) {
+            Bukkit.getConsoleSender().sendMessage(SkSpeak.PREFIX + "§4The Bot is already connected.");
+            return;
+        }
+
         try {
             TS3Config config = new TS3Config();
 

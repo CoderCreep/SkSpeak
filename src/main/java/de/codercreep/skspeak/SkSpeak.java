@@ -4,7 +4,9 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Query;
-import de.codercreep.skspeak.elements.EffConnect;
+import de.codercreep.skspeak.elements.effects.BroadcastEffect;
+import de.codercreep.skspeak.elements.effects.ConnectEffect;
+import de.codercreep.skspeak.elements.effects.DisconnectEffect;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,7 +41,26 @@ public class SkSpeak extends JavaPlugin {
             exception.printStackTrace();
         }
 
-        Skript.registerEffect(EffConnect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on port %integer%");
+        Skript.registerEffect(ConnectEffect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on query port %integer%");
+        Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect");
+        Skript.registerEffect(BroadcastEffect.class, "[skspeak] broadcastMessage %string%");
+    }
+
+    @Override
+    public void onDisable() {
+        if(isConnected()) {
+            ts3Query.exit();
+            setTs3Query(null);
+            setTs3Api(null);
+            Bukkit.getConsoleSender().sendMessage(PREFIX + "§4Disabling the TeamSpeak Bot");
+        }
+    }
+
+    public boolean isConnected() {
+        if(ts3Api == null) return false;
+        if(ts3Query == null) return false;
+
+        return ts3Query.isConnected();
     }
 
     public static SkSpeak getInstance() {
