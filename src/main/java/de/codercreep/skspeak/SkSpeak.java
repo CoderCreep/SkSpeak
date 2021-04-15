@@ -46,6 +46,7 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(BanEffect.class, "[skspeak] ban %integer% %string%", "[skspeak] ban %integer% %long% %string%");
         Skript.registerEffect(UnBanEffect.class, "[skspeak] unban %integer%");
         Skript.registerEffect(DeleteChannelEffect.class, "[skspeak] deletechannel %integer%");
+        Skript.registerEffect(DeleteChannelEffect.class, "[skspeak] poke %integer% %string%");
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client (join|connect)");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client (leave|disconnect)");
         Skript.registerEvent("Channel Create", ChannelCreateSkriptEvent.class, ChannelCreateEvent.class, "channel (create)");
