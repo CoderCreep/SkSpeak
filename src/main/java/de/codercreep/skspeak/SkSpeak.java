@@ -4,9 +4,9 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Query;
-import de.codercreep.skspeak.elements.effects.BroadcastEffect;
-import de.codercreep.skspeak.elements.effects.ConnectEffect;
-import de.codercreep.skspeak.elements.effects.DisconnectEffect;
+import de.codercreep.skspeak.elements.effects.*;
+import de.codercreep.skspeak.elements.events.bukkit.*;
+import de.codercreep.skspeak.elements.events.skript.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,7 +27,6 @@ public class SkSpeak extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
-
         if(!getDataFolder().exists())
             getDataFolder().mkdirs();
 
@@ -36,7 +35,7 @@ public class SkSpeak extends JavaPlugin {
         this.addon = Skript.registerAddon(this);
 
         try {
-            addon.loadClasses("de.codercreep.skspeak", "elements");
+            this.addon.loadClasses("de.codercreep.skspeak", "elements");
         } catch (IOException exception) {
             exception.printStackTrace();
         }
@@ -44,6 +43,21 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on query port %integer%");
         Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect");
         Skript.registerEffect(BroadcastEffect.class, "[skspeak] broadcastMessage %string%");
+        Skript.registerEffect(BanEffect.class, "[skspeak] ban %integer% %string%", "[skspeak] ban %integer% %long% %string%");
+        Skript.registerEffect(UnBanEffect.class, "[skspeak] unban %integer%");
+        Skript.registerEffect(DeleteChannelEffect.class, "[skspeak] deletechannel %integer%");
+        Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client (join|connect)");
+        Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client (leave|disconnect)");
+        Skript.registerEvent("Channel Create", ChannelCreateSkriptEvent.class, ChannelCreateEvent.class, "channel (create)");
+        Skript.registerEvent("Channel Deleted", ChannelDeletedSkriptEvent.class, ChannelDeletedEvent.class, "channel (deleted)");
+        Skript.registerEvent("Channel Description Edited", ChannelCreateSkriptEvent.class, ChannelCreateEvent.class, "channel (description) (edited)");
+        Skript.registerEvent("Channel Edited", ChannelEditedSkriptEvent.class, ChannelEditedEvent.class, "channel (edited)");
+        Skript.registerEvent("Channel Moved", ChannelCreateSkriptEvent.class, ChannelCreateEvent.class, "channel (moved)");
+        Skript.registerEvent("Channel Password Changed", ChannelPasswordChangedSkriptEvent.class, ChannelPasswordChangedEvent.class, "channel (password) (changed)");
+        Skript.registerEvent("Client Moved", ClientMovedSkriptEvent.class, ClientMovedEvent.class, "client (moved)");
+        Skript.registerEvent("Privilege Key Used", PrivilegeKeyUsedSkriptEvent.class, PrivilegeKeyUsedEvent.class, "privilege (key) (used)");
+        Skript.registerEvent("Server Edited", ServerEditedSkriptEvent.class, ServerEditedEvent.class, "server (edited)");
+        Skript.registerEvent("Text Message", TextMessageSkriptEvent.class, TextMessageEvent.class, "text (message)");
     }
 
     @Override

@@ -6,7 +6,7 @@
 
     <groupId>de.codercreep</groupId>
     <artifactId>SkSpeak</artifactId>
-    <version>0.1</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

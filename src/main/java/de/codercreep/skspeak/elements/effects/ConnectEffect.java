@@ -20,9 +20,11 @@ import com.github.theholywaffle.teamspeak3.api.event.ClientMovedEvent;
 import com.github.theholywaffle.teamspeak3.api.event.PrivilegeKeyUsedEvent;
 import com.github.theholywaffle.teamspeak3.api.event.ServerEditedEvent;
 import com.github.theholywaffle.teamspeak3.api.event.TS3Listener;
-import com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent;
 import com.github.theholywaffle.teamspeak3.api.exception.TS3ConnectionFailedException;
 import de.codercreep.skspeak.SkSpeak;
+import de.codercreep.skspeak.elements.events.bukkit.ClientConnectEvent;
+import de.codercreep.skspeak.elements.events.bukkit.ClientDisconnectEvent;
+import de.codercreep.skspeak.elements.events.bukkit.TextMessageEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
@@ -81,63 +83,87 @@ public class ConnectEffect extends Effect {
             api.addTS3Listeners(new TS3Listener() {
 
                 @Override
-                public void onTextMessage(TextMessageEvent event) {
-
+                public void onTextMessage(com.github.theholywaffle.teamspeak3.api.event.TextMessageEvent event) {
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new TextMessageEvent());
+                    });
                 }
 
                 @Override
                 public void onServerEdit(ServerEditedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ServerEditedEvent());
+                    });
                 }
 
                 @Override
                 public void onClientMoved(ClientMovedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ClientMovedEvent());
+                    });
                 }
 
                 @Override
                 public void onClientLeave(ClientLeaveEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new ClientDisconnectEvent());
+                    });
                 }
 
                 @Override
                 public void onClientJoin(ClientJoinEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new ClientConnectEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelEdit(ChannelEditedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelEditedEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelDescriptionChanged(ChannelDescriptionEditedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelDescriptionEditedEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelCreate(ChannelCreateEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelCreateEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelDeleted(ChannelDeletedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelDeletedEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelMoved(ChannelMovedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelMovedEvent());
+                    });
                 }
 
                 @Override
                 public void onChannelPasswordChanged(ChannelPasswordChangedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.ChannelPasswordChangedEvent());
+                    });
                 }
 
                 @Override
                 public void onPrivilegeKeyUsed(PrivilegeKeyUsedEvent event) {
-
+                    Bukkit.getScheduler().runTask(SkSpeak.getInstance(), () -> {
+                        Bukkit.getPluginManager().callEvent(new de.codercreep.skspeak.elements.events.bukkit.PrivilegeKeyUsedEvent());
+                    });
                 }
             });
             SkSpeak.getInstance().setTs3Query(query);
