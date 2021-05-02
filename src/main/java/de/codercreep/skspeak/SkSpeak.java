@@ -51,6 +51,7 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(PokeClientEffect.class, "[skspeak] pokeClient %integer% %string%");
         Skript.registerEffect(SendChannelMessageEffect.class, "[skspeak] sendChannelMessage %integer% %string%");
         Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] sendPrivateMessage %integer% %string%");
+        Skript.registerEffect(AddChannelClientPermissionEffect.class, "[skspeak] addChannelClientPermission %integer% %integer% %string% %integer%");
 
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client (join|connect)");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client (leave|disconnect)");
