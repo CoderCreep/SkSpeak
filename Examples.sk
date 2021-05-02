@@ -24,7 +24,7 @@ command /addClientToGroup:
 
 command /poke:
     trigger:
-        skspeak pokeClient 22 "This is a Poke."
+        skspeak pokeClient 22 "This is a Poke"
 
 command /sendChannelMessage:
     trigger:
