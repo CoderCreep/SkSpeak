@@ -1,0 +1,71 @@
+command /connect:
+    trigger:
+        skspeak connect to "127.0.0.1" with user "BotName" and name "serveradmin", "password" on query port 10011
+
+command /disconnect:
+    trigger:
+        skspeak disconnect
+
+command /broadcast:
+    trigger:
+        skspeak broadcastMessage "Hello"
+
+command /editDescription:
+    trigger:
+        skspeak editDescription 1 "Here is your description"
+
+command /editPassword:
+    trigger:
+        skspeak editPassword 1 "password"
+
+command /addClientToGroup:
+    trigger:
+        skspeak addClientToServerGroup 1 3
+
+command /poke:
+    trigger:
+        skspeak pokeClient 22 "This is a Poke."
+
+command /sendChannelMessage:
+    trigger:
+        skspeak sendChannelMessage 1 "Channel Message"
+
+command /sendPrivateMessage:
+    trigger:
+        skspeak sendPrivateMessage 1 "Private Message"
+
+on client join:
+  broadcast "Client joined"
+
+on client leave:
+  broadcast "Client leaved"
+
+on channel create:
+  broadcast "Channel created"
+
+on channel delete:
+  broadcast "Channel deleted"
+
+on channel description edited:
+  broadcast "Channel description edited"
+
+on channel edited:
+  broadcast "Channel edited"
+
+on channel moved:
+  broadcast "Channel moved"
+
+on channel password changed:
+  broadcast "Channel password changed"
+
+on client moved:
+  broadcast "Client moved"
+
+on privilege key used:
+  broadcast "Privilege key used"
+
+on server edited:
+    broadcast "Server Edited"
+
+on text message:
+  broadcast "Someone has texted"

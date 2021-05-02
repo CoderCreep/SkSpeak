@@ -1,0 +1,17 @@
+Connect: [skspeak] connect to %string% with user %string% and name %string%, %string% on query port %integer%
+
+Disconnect: [skspeak] disconnect
+
+BroadcastMessage: [skspeak] broadcastMessage %string%
+
+EditDescription: [skspeak] editDescription %integer% %string%
+
+EditPassword: [skspeak] editPassword %integer% %string%
+
+AddClientToServerGroup: [skspeak] addClientToServerGroup %integer% %integer%
+
+PokeClient: [skspeak] pokeClient %integer% %string%
+
+SendChannelMessage: [skspeak] sendChannelMessage %integer% %string%
+
+SenPrivateMessage: [skspeak] sendPrivateMessage %integer% %string%

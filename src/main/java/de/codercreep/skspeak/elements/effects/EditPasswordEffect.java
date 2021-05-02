@@ -4,26 +4,27 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import de.codercreep.skspeak.SkSpeak;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
-public class PokeEffect extends Effect {
+public class EditPasswordEffect extends Effect {
 
-    private Expression<Integer> clientId;
-    private Expression<String> message;
+    private Expression<Integer> id;
+    private Expression<String> password;
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult paramParseResult) {
-        this.clientId = (Expression<Integer>) expressions[0];
-        this.message = (Expression<String>) expressions[1];
+        this.id = (Expression<Integer>) expressions[0];
+        this.password = (Expression<String>) expressions[1];
         return true;
     }
 
     @Override
     public String toString(Event event, boolean b) {
-        return "ts3 broadcast";
+        return "ts3 editPassword";
     }
 
     @Override
@@ -33,6 +34,6 @@ public class PokeEffect extends Effect {
             return;
         }
 
-        SkSpeak.getInstance().getTs3Api().pokeClient(this.clientId.getSingle(event), this.message.getSingle(event));
+        SkSpeak.getInstance().getTs3Api().editChannel(this.id.getSingle(event), ChannelProperty.CHANNEL_PASSWORD, this.password.getSingle(event));
     }
 }

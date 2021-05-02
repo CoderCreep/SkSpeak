@@ -27,6 +27,7 @@ public class SkSpeak extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
+
         if(!getDataFolder().exists())
             getDataFolder().mkdirs();
 
@@ -38,15 +39,19 @@ public class SkSpeak extends JavaPlugin {
             this.addon.loadClasses("de.codercreep.skspeak", "elements");
         } catch (IOException exception) {
             exception.printStackTrace();
+            return;
         }
 
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on query port %integer%");
         Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect");
         Skript.registerEffect(BroadcastEffect.class, "[skspeak] broadcastMessage %string%");
-        Skript.registerEffect(BanEffect.class, "[skspeak] ban %integer% %string%", "[skspeak] ban %integer% %long% %string%");
-        Skript.registerEffect(UnBanEffect.class, "[skspeak] unban %integer%");
-        Skript.registerEffect(DeleteChannelEffect.class, "[skspeak] deletechannel %integer%");
-        Skript.registerEffect(DeleteChannelEffect.class, "[skspeak] poke %integer% %string%");
+        Skript.registerEffect(EditDescriptionEffect.class, "[skspeak] editDescription %integer% %string%");
+        Skript.registerEffect(EditPasswordEffect.class, "[skspeak] editPassword %integer% %string%");
+        Skript.registerEffect(AddClientToServerGroupEffect.class, "[skspeak] addClientToServerGroup %integer% %integer%");
+        Skript.registerEffect(PokeClientEffect.class, "[skspeak] pokeClient %integer% %string%");
+        Skript.registerEffect(SendChannelMessageEffect.class, "[skspeak] sendChannelMessage %integer% %string%");
+        Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] sendPrivateMessage %integer% %string%");
+
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client (join|connect)");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client (leave|disconnect)");
         Skript.registerEvent("Channel Create", ChannelCreateSkriptEvent.class, ChannelCreateEvent.class, "channel (create)");
@@ -64,9 +69,10 @@ public class SkSpeak extends JavaPlugin {
     @Override
     public void onDisable() {
         if(isConnected()) {
-            ts3Query.exit();
+            this.ts3Query.exit();
             setTs3Query(null);
             setTs3Api(null);
+
             Bukkit.getConsoleSender().sendMessage(PREFIX + "§4Disabling the TeamSpeak Bot");
         }
     }
