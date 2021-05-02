@@ -24,7 +24,7 @@ public class AddClientToServerGroupEffect extends Effect {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "ts3 addClientToGroup";
+        return "ts3 addClientToServerGroup";
     }
 
     @Override

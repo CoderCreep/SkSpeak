@@ -23,7 +23,7 @@ public class PokeClientEffect extends Effect {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "ts3 addClientToGroup";
+        return "ts3 pokeClient";
     }
 
     @Override

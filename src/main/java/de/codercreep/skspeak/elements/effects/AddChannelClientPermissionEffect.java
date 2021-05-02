@@ -27,7 +27,7 @@ public class AddChannelClientPermissionEffect extends Effect {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "ts3 sendPrivateMessage";
+        return "ts3 addChannelClientPermission";
     }
 
     @Override
