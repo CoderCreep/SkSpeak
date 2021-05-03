@@ -16,8 +16,8 @@ public class SendPrivateMessageEffect extends Effect {
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult paramParseResult) {
-        this.clientId = (Expression<Integer>) expressions[0];
-        this.message = (Expression<String>) expressions[1];
+        this.message = (Expression<String>) expressions[0];
+        this.clientId = (Expression<Integer>) expressions[1];
         return true;
     }
 

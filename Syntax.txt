@@ -1,19 +1,21 @@
-Connect: [skspeak] connect to %string% with user %string% and name %string%, %string% on query port %integer%
+Connect: [skspeak] connect (to|with) %string% with user %string% and name %string%, %string% (on|with) query port %integer%
 
-Disconnect: [skspeak] disconnect
+Disconnect: [skspeak] disconnect [from] query bot
 
-BroadcastMessage: [skspeak] broadcastMessage %string%
+BroadcastMessage: [skspeak] broadcast message %string% [with [query] bot]
 
-EditDescription: [skspeak] editDescription %integer% %string%
+EditDescription: [skspeak] (set|edit) description (from|of) channel [with id] %integer% to %string%
 
-EditPassword: [skspeak] editPassword %integer% %string%
+EditPassword: [skspeak] (set|edit) password (from|of) channel [with id] %integer% to %string%
 
-AddClientToServerGroup: [skspeak] addClientToServerGroup %integer% %integer%
+AddClientToServerGroup: [skspeak] add client [with id] %integer% to (servergroup|server group) %integer%
 
-PokeClient: [skspeak] pokeClient %integer% %string%
+PokeClient: [skspeak] poke client [with id] %integer% (with reason|due to) %string%
 
-SendChannelMessage: [skspeak] sendChannelMessage %integer% %string%
+SendChannelMessage: [skspeak] send [message] %string% to channel [with id] %integer%
 
-SendPrivateMessage: [skspeak] sendPrivateMessage %integer% %string%
+SendPrivateMessage: [skspeak] send private message %string% to user [with id] %integer%
 
-ClientIdOfIp: [skspeak] client id of "127.0.0.1"
+AddChannelClientPermission: [skspeak] addChannelClientPermission %integer% %integer% %string% %integer%
+
+ClientIdOfIp: [skspeak] client id of [user with ip] %string%

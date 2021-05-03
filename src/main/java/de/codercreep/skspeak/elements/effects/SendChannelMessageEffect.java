@@ -10,14 +10,14 @@ import org.bukkit.event.Event;
 
 public class SendChannelMessageEffect extends Effect {
 
-    private Expression<Integer> clientId;
+    private Expression<Integer> channelId;
     private Expression<String> message;
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult paramParseResult) {
-        this.clientId = (Expression<Integer>) expressions[0];
-        this.message = (Expression<String>) expressions[1];
+        this.message = (Expression<String>) expressions[0];
+        this.channelId = (Expression<Integer>) expressions[1];
         return true;
     }
 
@@ -33,6 +33,6 @@ public class SendChannelMessageEffect extends Effect {
             return;
         }
 
-        SkSpeak.getInstance().getTs3Api().sendChannelMessage(this.clientId.getSingle(event), this.message.getSingle(event));
+        SkSpeak.getInstance().getTs3Api().sendChannelMessage(this.channelId.getSingle(event), this.message.getSingle(event));
     }
 }

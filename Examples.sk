@@ -4,40 +4,41 @@ command /connect:
 
 command /disconnect:
     trigger:
-        skspeak disconnect
+        skspeak disconnect from query bot
 
 command /broadcast:
     trigger:
-        skspeak broadcastMessage "Hello"
+        skspeak broadcast message "BroadcastMessage" with query bot
 
 command /editDescription:
     trigger:
-        skspeak editDescription 1 "Here is your description"
+        skspeak set description of channel with id 1 to "New Description"
 
 command /editPassword:
     trigger:
-        skspeak editPassword 1 "password"
+        skspeak edit password from channel 1 to "NewPassword"
 
-command /addClientToGroup:
+command /addClientToServerGroup:
     trigger:
-        skspeak addClientToServerGroup 1 3
+        skspeak add client with id 1 to servergroup 1
 
 command /poke:
     trigger:
-        skspeak pokeClient 22 "This is a Poke"
+        skspeak poke client with id 1 due to "Poke Lol"
 
 command /pokeWithIp:
     trigger:
-        set {_int} to skspeak client id of "127.0.0.1"
-        skspeak pokeClient {_int} "This is a Poke"
+        set {_int} to skspeak client id of user with ip "127.0.0.1"
+        skspeak poke client {_int} with reason "Poke Lmao"
 
 command /sendChannelMessage:
     trigger:
-        skspeak sendChannelMessage 1 "Channel Message"
+        skspeak send message "Channel Message" to channel with id 1
 
 command /sendPrivateMessage:
     trigger:
-        skspeak sendPrivateMessage 1 "Private Message"
+        set {_int} to skspeak client id of user with ip "127.0.0.1"
+        skspeak send private message "Private Message" to user {_int}
 
 on client join:
   broadcast "Client joined"
@@ -48,7 +49,7 @@ on client leave:
 on channel create:
   broadcast "Channel created"
 
-on channel delete:
+on channel deleted:
   broadcast "Channel deleted"
 
 on channel description edited:

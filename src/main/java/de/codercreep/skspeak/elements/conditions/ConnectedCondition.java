@@ -16,7 +16,7 @@ public class ConnectedCondition extends Condition {
 
     @Override
     public String toString(Event event, boolean b) {
-        return "Bot is connected";
+        return "connected";
     }
 
     @Override
