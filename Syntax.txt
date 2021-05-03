@@ -14,4 +14,6 @@ PokeClient: [skspeak] pokeClient %integer% %string%
 
 SendChannelMessage: [skspeak] sendChannelMessage %integer% %string%
 
-SenPrivateMessage: [skspeak] sendPrivateMessage %integer% %string%
+SendPrivateMessage: [skspeak] sendPrivateMessage %integer% %string%
+
+ClientIdOfIp: [skspeak] client id of "127.0.0.1"

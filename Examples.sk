@@ -26,6 +26,11 @@ command /poke:
     trigger:
         skspeak pokeClient 22 "This is a Poke"
 
+command /pokeWithIp:
+    trigger:
+        set {_int} to skspeak client id of "127.0.0.1"
+        skspeak pokeClient {_int} "This is a Poke"
+
 command /sendChannelMessage:
     trigger:
         skspeak sendChannelMessage 1 "Channel Message"

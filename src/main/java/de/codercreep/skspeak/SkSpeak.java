@@ -2,11 +2,14 @@ package de.codercreep.skspeak;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
+import ch.njol.skript.lang.ExpressionType;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Query;
+import de.codercreep.skspeak.elements.conditions.ConnectedCondition;
 import de.codercreep.skspeak.elements.effects.*;
 import de.codercreep.skspeak.elements.events.bukkit.*;
 import de.codercreep.skspeak.elements.events.skript.*;
+import de.codercreep.skspeak.elements.expressions.IdExpression;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +45,8 @@ public class SkSpeak extends JavaPlugin {
             return;
         }
 
+        Skript.registerExpression(IdExpression.class, Integer.class, ExpressionType.COMBINED, "[skspeak] client id of %string%");
+
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect to %string% with user %string% and (login|name) %string%, %string% on query port %integer%");
         Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect");
         Skript.registerEffect(BroadcastEffect.class, "[skspeak] broadcastMessage %string%");
@@ -52,6 +57,7 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(SendChannelMessageEffect.class, "[skspeak] sendChannelMessage %integer% %string%");
         Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] sendPrivateMessage %integer% %string%");
         Skript.registerEffect(AddChannelClientPermissionEffect.class, "[skspeak] addChannelClientPermission %integer% %integer% %string% %integer%");
+        Skript.registerCondition(ConnectedCondition.class, "connected");
 
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client (join|connect)");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client (leave|disconnect)");
