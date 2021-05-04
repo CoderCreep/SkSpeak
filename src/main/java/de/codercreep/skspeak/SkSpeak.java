@@ -5,12 +5,14 @@ import ch.njol.skript.SkriptAddon;
 import ch.njol.skript.lang.ExpressionType;
 import com.github.theholywaffle.teamspeak3.TS3Api;
 import com.github.theholywaffle.teamspeak3.TS3Query;
-import de.codercreep.skspeak.elements.conditions.ConnectedCondition;
 import de.codercreep.skspeak.elements.effects.*;
 import de.codercreep.skspeak.elements.events.bukkit.*;
 import de.codercreep.skspeak.elements.events.skript.*;
 import de.codercreep.skspeak.elements.expressions.IdExpression;
+import de.codercreep.skspeak.metcris.Metrics;
+import de.codercreep.skspeak.update.Update;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -45,6 +47,16 @@ public class SkSpeak extends JavaPlugin {
             return;
         }
 
+        new Metrics(this, 11244);
+
+        new Update(91999).getVersion(version -> {
+            if(!this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                Bukkit.getConsoleSender().sendMessage(PREFIX + "§aThere is a new update available.");
+                Bukkit.getConsoleSender().sendMessage(PREFIX + "§ehttps://www.spigotmc.org/resources/skspeak.91999/");
+            } else
+                Bukkit.getConsoleSender().sendMessage(PREFIX + "§cThere is not a new update available.");
+        });
+
         Skript.registerExpression(IdExpression.class, Integer.class, ExpressionType.COMBINED, "[skspeak] client id of [user with ip] %string%");
 
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect (to|with) %string% with user %string% and name %string%, %string% (on|with) query port %integer%");
@@ -57,8 +69,6 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(SendChannelMessageEffect.class, "[skspeak] send [message] %string% to channel [with id] %integer%");
         Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] send private message %string% to user [with id] %integer%");
         Skript.registerEffect(AddChannelClientPermissionEffect.class, "[skspeak] addChannelClientPermission %integer% %integer% %string% %integer%");
-
-        Skript.registerCondition(ConnectedCondition.class, "connected");
 
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client join|connect");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client leave|disconnect");
