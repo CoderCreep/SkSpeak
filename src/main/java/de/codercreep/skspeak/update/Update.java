@@ -3,7 +3,6 @@ package de.codercreep.skspeak.update;
 import de.codercreep.skspeak.SkSpeak;
 import org.bukkit.Bukkit;
 
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;

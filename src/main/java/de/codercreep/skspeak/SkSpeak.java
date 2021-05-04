@@ -8,11 +8,11 @@ import com.github.theholywaffle.teamspeak3.TS3Query;
 import de.codercreep.skspeak.elements.effects.*;
 import de.codercreep.skspeak.elements.events.bukkit.*;
 import de.codercreep.skspeak.elements.events.skript.*;
+import de.codercreep.skspeak.elements.expressions.ConnectedExpression;
 import de.codercreep.skspeak.elements.expressions.IdExpression;
 import de.codercreep.skspeak.metcris.Metrics;
 import de.codercreep.skspeak.update.Update;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -58,16 +58,19 @@ public class SkSpeak extends JavaPlugin {
         });
 
         Skript.registerExpression(IdExpression.class, Integer.class, ExpressionType.COMBINED, "[skspeak] client id of [user with ip] %string%");
+        Skript.registerExpression(ConnectedExpression.class, Boolean.class, ExpressionType.COMBINED, "[skspeak] connected");
 
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect (to|with) %string% with user %string% and name %string%, %string% (on|with) query port %integer%");
         Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect [from] query bot");
         Skript.registerEffect(BroadcastEffect.class, "[skspeak] broadcast message %string% [with [query] bot]");
         Skript.registerEffect(EditDescriptionEffect.class, "[skspeak] (set|edit) description (from|of) channel [with id] %integer% to %string%");
         Skript.registerEffect(EditPasswordEffect.class, "[skspeak] (set|edit) password (from|of) channel [with id] %integer% to %string%");
+        Skript.registerEffect(EditNickNameEffect.class, "[skspeak] (set|edit) nickname to %string%");
         Skript.registerEffect(AddClientToServerGroupEffect.class, "[skspeak] add client [with id] %integer% to (servergroup|server group) %integer%");
         Skript.registerEffect(PokeClientEffect.class, "[skspeak] poke client [with id] %integer% (with reason|due to) %string%");
         Skript.registerEffect(SendChannelMessageEffect.class, "[skspeak] send [message] %string% to channel [with id] %integer%");
         Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] send private message %string% to user [with id] %integer%");
+        Skript.registerEffect(MoveClientEffect.class, "[skspeak] move client [from id] %integer% to channel [with id] %integer%");
         Skript.registerEffect(AddChannelClientPermissionEffect.class, "[skspeak] addChannelClientPermission %integer% %integer% %string% %integer%");
 
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client join|connect");
@@ -90,7 +93,6 @@ public class SkSpeak extends JavaPlugin {
             this.ts3Query.exit();
             setTs3Query(null);
             setTs3Api(null);
-
             Bukkit.getConsoleSender().sendMessage(PREFIX + "§4Disabling the TeamSpeak Bot");
         }
     }

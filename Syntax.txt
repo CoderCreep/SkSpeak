@@ -19,3 +19,11 @@ SendPrivateMessage: [skspeak] send private message %string% to user [with id] %i
 AddChannelClientPermission: [skspeak] addChannelClientPermission %integer% %integer% %string% %integer%
 
 ClientIdOfIp: [skspeak] client id of [user with ip] %string%
+
+Connected: [skspeak] connected
+
+MoveClient: [skspeak] move client [from id] %integer% to channel [with id] %integer%
+
+EditNickName: [skspeak] (set|edit) nickname to %string%
+
+Online: [skspeak] client is online %integer%"

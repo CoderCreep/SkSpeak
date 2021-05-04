@@ -1,6 +1,20 @@
 command /connect:
     trigger:
-        skspeak connect to "127.0.0.1" with user "BotName" and name "serveradmin", "password" on query port 10011
+        skspeak connect to "127.0.0.1" with user "BotName" and name "serveradmin", "AdXrk8uN" on query port 10011
+
+command /moveClient:
+    trigger:
+        set {_playerip} to skspeak client id of user with ip "127.0.0.1"
+        skspeak move client from id {_playerip} to channel with id 1
+
+command /editNickName:
+    trigger:
+        skspeak set nickname to "Bot-2.0"
+
+command /connected:
+    trigger:
+        if skspeak connected is true:
+            broadcast "TRUE"
 
 command /disconnect:
     trigger:
@@ -16,11 +30,12 @@ command /editDescription:
 
 command /editPassword:
     trigger:
-        skspeak edit password from channel 1 to "NewPassword"
+        skspeak edit password from channel 21to "NewPassword"
 
 command /addClientToServerGroup:
     trigger:
-        skspeak add client with id 1 to servergroup 1
+        set {_integerip} to skspeak client id of "%IP of player%"
+        skspeak add client with id {_integerip} to servergroup 1
 
 command /poke:
     trigger:
@@ -28,8 +43,8 @@ command /poke:
 
 command /pokeWithIp:
     trigger:
-        set {_int} to skspeak client id of user with ip "127.0.0.1"
-        skspeak poke client {_int} with reason "Poke Lmao"
+        set {_intip} to skspeak client id of "%IP of player%"
+        skspeak poke client {_intip} with reason "Poke 3"
 
 command /sendChannelMessage:
     trigger:
