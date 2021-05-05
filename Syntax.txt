@@ -26,4 +26,6 @@ MoveClient: [skspeak] move client [from id] %integer% to channel [with id] %inte
 
 EditNickName: [skspeak] (set|edit) nickname to %string%
 
-Online: [skspeak] client is online %integer%"
+ClientIsConnected: [skspeak] client [with id] %integer% is connected"
+
+EditClientChannelGroup: [skspeak] (set|edit) channel group [with client db id] to %integer%, group id %integer% and [with channel id] %integer%

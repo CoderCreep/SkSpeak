@@ -62,9 +62,9 @@ public class ConnectEffect extends Effect {
         try {
             TS3Config config = new TS3Config();
 
-            config.setHost(host.getSingle(event));
+            config.setHost(this.host.getSingle(event));
 
-            config.setQueryPort(port.getSingle(event));
+            config.setQueryPort(this.port.getSingle(event));
 
             TS3Query query = new TS3Query(config);
 
@@ -72,11 +72,11 @@ public class ConnectEffect extends Effect {
 
             TS3Api api = query.getApi();
 
-            api.login(login.getSingle(event), password.getSingle(event));
+            api.login(this.login.getSingle(event), this.password.getSingle(event));
 
             api.selectVirtualServerById(1);
 
-            api.setNickname(user.getSingle(event));
+            api.setNickname(this.user.getSingle(event));
 
             api.registerAllEvents();
 

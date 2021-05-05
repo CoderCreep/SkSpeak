@@ -4,27 +4,28 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import com.github.theholywaffle.teamspeak3.api.ChannelProperty;
 import de.codercreep.skspeak.SkSpeak;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
-public class MoveClientEffect extends Effect {
+public class EditClientChannelGroup extends Effect {
 
-    private Expression<Integer> clientId;
+    private Expression<Integer> groupId;
     private Expression<Integer> channelId;
+    private Expression<Integer> clientDbId;
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] expressions, int matchedPattern, Kleenean kleenean, SkriptParser.ParseResult paramParseResult) {
-        this.clientId = (Expression<Integer>) expressions[0];
-        this.channelId = (Expression<Integer>) expressions[1];
+        this.clientDbId = (Expression<Integer>) expressions[0];
+        this.groupId = (Expression<Integer>) expressions[1];
+        this.channelId = (Expression<Integer>) expressions[2];
         return true;
     }
 
     @Override
     public String toString(Event event, boolean b) {
-        return "ts3 moveClient";
+        return "ts3 editChannelGroup";
     }
 
     @Override
@@ -34,6 +35,6 @@ public class MoveClientEffect extends Effect {
             return;
         }
 
-        SkSpeak.getInstance().getTs3Api().moveClient(this.clientId.getSingle(event), this.channelId.getSingle(event));
+        SkSpeak.getInstance().getTs3Api().setClientChannelGroup(this.groupId.getSingle(event), this.channelId.getSingle(event), this.clientDbId.getSingle(event));
     }
 }

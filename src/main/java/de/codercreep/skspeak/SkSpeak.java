@@ -8,6 +8,7 @@ import com.github.theholywaffle.teamspeak3.TS3Query;
 import de.codercreep.skspeak.elements.effects.*;
 import de.codercreep.skspeak.elements.events.bukkit.*;
 import de.codercreep.skspeak.elements.events.skript.*;
+import de.codercreep.skspeak.elements.expressions.ClientIsOnlineExpression;
 import de.codercreep.skspeak.elements.expressions.ConnectedExpression;
 import de.codercreep.skspeak.elements.expressions.IdExpression;
 import de.codercreep.skspeak.metcris.Metrics;
@@ -51,7 +52,7 @@ public class SkSpeak extends JavaPlugin {
 
         new Update(91999).getVersion(version -> {
             if(!this.getDescription().getVersion().equalsIgnoreCase(version)) {
-                Bukkit.getConsoleSender().sendMessage(PREFIX + "§aThere is a new update available.");
+                Bukkit.getConsoleSender().sendMessage(PREFIX + "§aThere is a new update available. V" + version);
                 Bukkit.getConsoleSender().sendMessage(PREFIX + "§ehttps://www.spigotmc.org/resources/skspeak.91999/");
             } else
                 Bukkit.getConsoleSender().sendMessage(PREFIX + "§cThere is not a new update available.");
@@ -59,6 +60,7 @@ public class SkSpeak extends JavaPlugin {
 
         Skript.registerExpression(IdExpression.class, Integer.class, ExpressionType.COMBINED, "[skspeak] client id of [user with ip] %string%");
         Skript.registerExpression(ConnectedExpression.class, Boolean.class, ExpressionType.COMBINED, "[skspeak] connected");
+        Skript.registerExpression(ClientIsOnlineExpression.class, Boolean.class, ExpressionType.COMBINED, "[skspeak] client [with id] %integer% is connected");
 
         Skript.registerEffect(ConnectEffect.class, "[skspeak] connect (to|with) %string% with user %string% and name %string%, %string% (on|with) query port %integer%");
         Skript.registerEffect(DisconnectEffect.class, "[skspeak] disconnect [from] query bot");
@@ -72,6 +74,7 @@ public class SkSpeak extends JavaPlugin {
         Skript.registerEffect(SendPrivateMessageEffect.class, "[skspeak] send private message %string% to user [with id] %integer%");
         Skript.registerEffect(MoveClientEffect.class, "[skspeak] move client [from id] %integer% to channel [with id] %integer%");
         Skript.registerEffect(AddChannelClientPermissionEffect.class, "[skspeak] addChannelClientPermission %integer% %integer% %string% %integer%");
+        Skript.registerEffect(EditClientChannelGroup.class, "[skspeak] (set|edit) channel group [with client db id] to %integer%, group id %integer% and [with channel id] %integer%");
 
         Skript.registerEvent("Client Join", ClientConnectSkriptEvent.class, ClientConnectEvent.class, "client join|connect");
         Skript.registerEvent("Client Leave", ClientDisconnectSkriptEvent.class, ClientDisconnectEvent.class, "client leave|disconnect");
